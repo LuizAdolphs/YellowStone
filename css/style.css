@@ -1,0 +1,146 @@
+/*regras para resetar os valores padrões de navegador*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #E0D449;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+ul.menu {
+    list-style: none; /*remove as bolinhas ul*/
+}
+
+/*aplica regra ao "li" do menu se o mesmo for filho dele*/
+ul.menu > li {
+    display: inline-block;
+}
+
+ul.menu > li > a {
+    display: block;
+    padding: 5px 10px; /*isso define 5px pra topo e inferior e
+                         10px para os lados (direita e esquera)*/
+    background-color: #856605;
+    color: #E0D449;
+    width: 100px;
+    text-decoration: none; /*tira a linha de baixo do "a" (ancora)*/
+    text-align: center;
+    /*text-transform: uppercase; deixa o texto em maiusculo */
+}
+
+ul.menu > li > a:hover {
+    background-color: #9B8232;
+    color: #D2C310;
+}
+
+/*tamanho padrão da página*/
+.container {
+    width: 66%;
+    display: block; /*o elemento tem comportamento de bloco 
+                      na pagina*/
+}
+
+.centralizar {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.campoFormulario {
+    margin: 5px;
+    display: block;
+    font-size: 18px;
+    line-height: 24px;
+    width: 310px
+}
+
+div.campoFormulario > label {
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    font-weight: bold;
+    vertical-align: top;
+}
+
+div.campoFormulario > input,
+div.campoFormulario > textarea {
+    width: 200px;
+    font-size: 18px;
+    border: 1px solid #000000;
+}
+
+div.campoFormulario > input {
+    height: 24px;
+}
+
+div.campoFormulario > button {
+    display: block;
+    float: right;
+    height: 30px;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 5px;
+
+    background-color: #856605;
+    color: #E0D449;
+    border: 1px solid #000000;
+}
+
+div.campoFormulario > button:hover {
+    background-color: #9B8232;
+    color: #D2C310;
+
+    cursor: pointer;
+}
+
+/*margin 10 pixles em todas as direcoes*/
+.m10px {
+    margin: 10px;
+}
+
+.p10px {
+    padding: 10px;
+}
+
+.dILB {
+    display: inline-block;
+}
+
+.vAT {
+    vertical-align: top;
+}
+
+/* Esquemas de cores
+
+Primary Color:
+D2A410	9B8232	856605	E0B630	E0BC49
+Secondary Color A:
+D2C310	9B9332	857A05	E0D230	E0D449
+Secondary Color B:
+4D168F	452769	2C065A	6B31B1	7544B1
+Complementary Color:
+231F93	302D6C	0C095D	403BB4	504CB4
+
+*/
+
+table {
+    border-spacing: 0;
+}
+
+table > thead > tr > th,
+table > tbody > tr > td {
+    border: 1px solid #000;
+    border-right: 0;
+    padding: 2px;
+}
+
+/*last-child é o ultimo elemento filho*/
+table > thead > tr > th:last-child,
+table > tbody > tr > td:last-child {
+    border-right: 1px solid #000;
+}
+
+.cP {
+    cursor: pointer;
+}

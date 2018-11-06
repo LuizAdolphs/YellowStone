@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Yellow Stone - Cadastro</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="container centralizar">
+        <!-- tag específica para cabeçalho -->
+        <div class="m10px">
+            <h1>Yellow Stone</h1>
+        </div>
+    </header>
+
+    <nav id="menuSite" class="container centralizar">
+
+    </nav>
+
+    <section class="container centralizar p10px">
+        <!-- tag específica para as sessões do site -->
+        
+        <h3>Cadastro de Produtos</h3>
+
+        <div class="dILB vAT">
+            <form action="" id="formularioProduto">
+                <div class="campoFormulario">
+                    <label for="Nome">Nome</label>
+                    <input type="text" name="Nome" id="Nome">
+                </div>
+                <div class="campoFormulario">
+                    <label for="Descricao">Descrição</label>
+                    <textarea name="Descricao" 
+                        id="Descricao" 
+                        cols="30" 
+                        rows="10"></textarea>
+                </div>
+                <div class="campoFormulario">
+                    <label for="Preco">Preço</label>
+                    <input type="number" name="Preco" id="Preco" step="0.01" min="0" max="999999">
+                </div>
+                <div class="campoFormulario">
+                    <button type="submit">Adicionar</button>
+                </div>
+            </form>
+        </div>
+        <div class="dILB vAT">
+            <table id="tabelaProdutos">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Descrição</th>
+                        <th>Preço</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+    
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script src="src/script.js"></script>
+    <script src="src/cadastroProdutos.js"></script>
+    <script src="src/tabelaProdutos.js"></script>
+</body>
+
+</html>
