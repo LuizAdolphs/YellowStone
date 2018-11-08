@@ -29,6 +29,7 @@
 
         <div class="dILB vAT">
             <form action="" id="formularioProduto">
+                <input type="hidden" name="IdProduto" id="IdProduto">
                 <div class="campoFormulario">
                     <label for="Nome">Nome</label>
                     <input type="text" name="Nome" id="Nome">
@@ -45,7 +46,7 @@
                     <input type="number" name="Preco" id="Preco" step="0.01" min="0" max="999999">
                 </div>
                 <div class="campoFormulario">
-                    <button type="submit">Adicionar</button>
+                    <button type="submit" id="botaoAdicionar">Adicionar</button>
                 </div>
             </form>
         </div>
@@ -63,6 +64,9 @@
                 <tbody>
     
                 </tbody>
+                <tfoot>
+
+                </tfoot>
             </table>
         </div>
     </section>

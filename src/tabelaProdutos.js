@@ -1,25 +1,43 @@
+var produtos = [];
 
-function criaTabelaProdutos(produtos, temColunaExcluir) {
+function criaTabelaProdutos(temColunaExcluir, pagina) {
     //criando o html com as <tr> e <td>
 
     var linhasProdutos = "";
 
+    var totalDeRegistros = produtos.length;
+    var tamanhoDaPagina  = 10;
+    
+    var quantidadeDePaginas = Math.ceil(totalDeRegistros / tamanhoDaPagina);
+    
+    var multiplicaPagina = pagina * tamanhoDaPagina;
+
+    var inicioSlice = multiplicaPagina - tamanhoDaPagina;
+
+    var paginaDeProdutos = produtos.slice(inicioSlice, multiplicaPagina);
+
     for (var contador = 0;
-        contador < produtos.length;
+        contador < paginaDeProdutos.length;
         contador++) {
         linhasProdutos = linhasProdutos + `
             <tr>
-                <td>`+ produtos[contador].id + `</td>
-                <td>`+ produtos[contador].nome + `</td>
-                <td>`+ produtos[contador].descricao + `</td>
-                <td>`+ produtos[contador].preco + `</td>
+                <td>`+ paginaDeProdutos[contador].id + `</td>
+                <td>`+ paginaDeProdutos[contador].nome + `</td>
+                <td>`+ paginaDeProdutos[contador].descricao + `</td>
+                <td>`+ paginaDeProdutos[contador].preco + `</td>
         `;
 
         if (temColunaExcluir) {
             linhasProdutos = linhasProdutos +
                 `<td>
+                    <i class="fas fa-edit cP"
+                        onclick="editarProduto('` + paginaDeProdutos[contador].id 
+                        + `');"> 
+                    </i>
                     <i class="fas fa-times cP"
-                        onclick="excluirProduto('` + produtos[contador].id + `','` + produtos[contador].nome + `');"> 
+                        onclick="excluirProduto('` + paginaDeProdutos[contador].id 
+                        + `','` 
+                        + paginaDeProdutos[contador].nome + `');"> 
                     </i>
                 </td>`;
         }
@@ -32,6 +50,27 @@ function criaTabelaProdutos(produtos, temColunaExcluir) {
     var tabelaCorpo = tabela.getElementsByTagName("tbody")[0];
 
     tabelaCorpo.innerHTML = linhasProdutos;
+
+    var tabelaFoot = tabela.getElementsByTagName("tfoot")[0];
+
+    var rodapeComPaginas = "";
+
+    for(var i = 1; i <= quantidadeDePaginas; i++) {
+        rodapeComPaginas = rodapeComPaginas 
+            + "<a class='mR10px' href='#' onclick='criaTabelaProdutos(" 
+            + temColunaExcluir
+            +","
+            +i
+            +")'>" 
+            + i 
+            + "</a>";
+            //<a href='#' onclick='criaTabelaProdutos(true, 1)'>1</a>
+    }
+
+    tabelaFoot.innerHTML = "<tr><td colspan='3'>" 
+        + rodapeComPaginas
+        + "</td></tr>";
+
 }
 
 function carregaProdutos(mostraExcluir) {
@@ -43,9 +82,9 @@ function carregaProdutos(mostraExcluir) {
 
     request.addEventListener("readystatechange", function () {
         if (this.readyState === this.DONE) {
-            var meuJson = JSON.parse(this.responseText);
+            produtos = JSON.parse(this.responseText);
             
-            criaTabelaProdutos(meuJson, mostraExcluir);
+            criaTabelaProdutos(mostraExcluir, 1);
         }
     });
 
@@ -78,4 +117,30 @@ function excluirProduto(idProduto, nome) {
 
         request.send();
     }
+}
+
+function editarProduto(idProduto) {
+    var produto = produtos.find(function(produtoPercorrido){
+        return produtoPercorrido.id == idProduto;
+    });
+
+    var campoId = document.getElementById("IdProduto");
+
+    campoId.value = produto.id;
+
+    var campoNome = document.getElementById("Nome");
+
+    campoNome.value = produto.nome;
+
+    var campoDescricao = document.getElementById("Descricao");
+
+    campoDescricao.value = produto.descricao;
+
+    var campoPreco = document.getElementById("Preco");
+
+    campoPreco.value = produto.preco;
+
+    var botao = document.getElementById("botaoAdicionar");
+
+    botao.innerText = "Editar";
 }

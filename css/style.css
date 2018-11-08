@@ -94,9 +94,14 @@ div.campoFormulario > button:hover {
     cursor: pointer;
 }
 
-/*margin 10 pixles em todas as direcoes*/
+/*margin 10 pixels em todas as direcoes*/
 .m10px {
     margin: 10px;
+}
+
+/*margin 10 pixels pra direita*/
+.mR10px {
+    margin-right: 10px;
 }
 
 .p10px {

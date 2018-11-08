@@ -1,5 +1,3 @@
-var produtos = [];
-
 window.onload = function () {
     criaMenu();
 
@@ -53,7 +51,7 @@ window.onload = function () {
             return;
         }
         */
-
+        debugger;
         var novoProduto = new produto(
             dadosForm.get("Nome"),
             dadosForm.get("Descricao"),
@@ -72,7 +70,12 @@ window.onload = function () {
             }
         });
 
-        request.open("POST", urlBase + "/products");
+        if (dadosForm.get("IdProduto") == "") {
+            request.open("POST", urlBase + "/products");
+        } else {
+            request.open("PUT", urlBase + "/products/" 
+                + dadosForm.get("IdProduto"));
+        }
 
         request.setRequestHeader("content-type"
             ,"application/json");
@@ -83,13 +86,17 @@ window.onload = function () {
 
         //limpar o form
         evento.target.reset();
-        
-        criaTabelaProdutos(produtos, true);
+
+        document.getElementById("IdProduto").value = "";
+
+        var botao = document.getElementById("botaoAdicionar");
+
+        botao.innerText = "Adicionar";
     });
 }
 
-var produto = function (id, nome, descricao, preco) {
-    this.id = id;
+var produto = function (nome, descricao, preco) {
+
     this.nome = nome;
     this.descricao = descricao;
     this.preco = preco;
