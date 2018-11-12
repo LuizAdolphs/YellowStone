@@ -45,7 +45,7 @@ function criaTabelaProdutos(temColunaExcluir, pagina) {
         linhasProdutos = linhasProdutos + '</tr>';
     }
 
-    var tabela = document.getElementById("tabelaProdutos");
+    var tabela = $("#tabelaProdutos");
 
     var tabelaCorpo = tabela.getElementsByTagName("tbody")[0];
 
@@ -124,23 +124,23 @@ function editarProduto(idProduto) {
         return produtoPercorrido.id == idProduto;
     });
 
-    var campoId = document.getElementById("IdProduto");
+    var campoId = $("#IdProduto");
 
     campoId.value = produto.id;
 
-    var campoNome = document.getElementById("Nome");
+    var campoNome = $("#Nome");
 
     campoNome.value = produto.nome;
 
-    var campoDescricao = document.getElementById("Descricao");
+    var campoDescricao = $("#Descricao");
 
     campoDescricao.value = produto.descricao;
 
-    var campoPreco = document.getElementById("Preco");
+    var campoPreco = $("#Preco");
 
     campoPreco.value = produto.preco;
 
-    var botao = document.getElementById("botaoAdicionar");
+    var botao = $("#botaoAdicionar");
 
     botao.innerText = "Editar";
 }

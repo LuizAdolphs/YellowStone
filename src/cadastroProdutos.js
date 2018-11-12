@@ -3,9 +3,9 @@ window.onload = function () {
 
     carregaProdutos(true);
 
-    var formulario = document.getElementById("formularioProduto");
+    var formulario = $("#formularioProduto");
 
-    formulario.addEventListener("submit", function(evento){
+    formulario.submit(function(evento){
         evento.preventDefault();
 
         var dadosForm = new FormData(evento.target);
@@ -51,7 +51,7 @@ window.onload = function () {
             return;
         }
         */
-        debugger;
+
         var novoProduto = new produto(
             dadosForm.get("Nome"),
             dadosForm.get("Descricao"),
@@ -62,36 +62,31 @@ window.onload = function () {
 
         //agora criamos na API, magnata
 
-        var request = new XMLHttpRequest();
+        var httpType = "POST";
+        var url = urlBase + "/products";
 
-        request.addEventListener("readystatechange", function(){
-            if (this.readyState === this.DONE) {
-                carregaProdutos(true);
-            }
-        });
+        if (dadosForm.get("IdProduto") != "") {
 
-        if (dadosForm.get("IdProduto") == "") {
-            request.open("POST", urlBase + "/products");
-        } else {
-            request.open("PUT", urlBase + "/products/" 
-                + dadosForm.get("IdProduto"));
+            httpType = "PUT";
+            url = urlBase + "/products/" 
+                + dadosForm.get("IdProduto");
         }
 
-        request.setRequestHeader("content-type"
-            ,"application/json");
+        $.ajax({
+            type: httpType,
+            url: url,
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(novoProduto),
+            success: function() {
+                carregaProdutos(true);
 
-        var meuTexto = JSON.stringify(novoProduto);
+                evento.target.reset();
 
-        request.send(meuTexto);
+                $("#IdProduto").val("");
 
-        //limpar o form
-        evento.target.reset();
-
-        document.getElementById("IdProduto").value = "";
-
-        var botao = document.getElementById("botaoAdicionar");
-
-        botao.innerText = "Adicionar";
+                $("#botaoAdicionar").text("Adicionar");
+            }
+        });
     });
 }
 

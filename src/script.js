@@ -1,8 +1,7 @@
 var urlBase = "http://5bbe7b6a72de1d00132535f2.mockapi.io/ys/api/v1";
 
 function criaMenu() {
-    var menuSite = document
-        .getElementById("menuSite");
+    var menuSite = $("#menuSite");
 
     /*acento grave para strings de multiplas linhas*/
 
@@ -26,7 +25,7 @@ function criaMenu() {
     `+ concatenado + `
     </ul>`;
 
-    menuSite.innerHTML = htmlDoMenu;
+    menuSite.html(htmlDoMenu);
 }
 
 var itemDoMenu = function (endereco, descricao) {
